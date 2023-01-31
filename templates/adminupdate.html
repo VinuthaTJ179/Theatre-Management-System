@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylehouse.css')}}">
+</head>
+
+<body>
+    <div class="signupFrm">
+        <form action="" class="form" method="POST">
+            <h1 class="title">Update Movies based on Availability</h1>
+
+            <div class="inputContainer">
+                <input type="text" name="mov_id" class="input" placeholder="a" name="mov_id">
+                <label for="" class="label">Movie ID</label>
+            </div>
+
+            <div class="inputContainer">
+                <input type="text" name="mov_title" class="input" placeholder="a" name="mov_title">
+                <label for="" class="label">Movie Title</label>
+            </div>
+
+            <div class="inputContainer">
+                <input type="text" name="mov_year" class="input" placeholder="a" name="mov_year">
+                <label for="" class="label">Movie Year</label>
+            </div>
+
+            <div class="inputContainer">
+                <label for="" class="label">Movie Language</label>
+                <select id="mov_lang" name="mov_lang">
+                    <option value="ENGLISH">English</option>
+                    <option value="HINDI">Hindi</option>
+                    <option value="KANNADA">Kannada</option>
+                    <option value="TELUGU">Telugu</option>
+                    <option value="TAMIL">Tamil</option>
+                    <option value="MALAYALAM">Malayalam</option>
+                </select>
+            </div>
+
+            <div class="inputContainer">
+                <input type="text" name="dir_id" class="input" placeholder="a" name="dir_id">
+                <label for="" class="label">Director ID</label>
+            </div>
+
+            <div class="inputContainer">
+                <input type="text" name="duration" class="input" placeholder="a" name="duration">
+                <label for="" class="label">Duration</label>
+            </div>
+
+
+            <input type="submit" class="submitBtn" value="Update">
+        </form>
+    </div>
+</body>
+
+</html>
