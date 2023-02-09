@@ -56,7 +56,6 @@ def booking():
         userDetails = request.form
         ticketid = userDetails['ticketid']   
         username = userDetails['username']
-        movieid = userDetails['movieid']
         movietitle = userDetails['movietitle']
         date = userDetails['date']
         time = userDetails['time']
@@ -67,7 +66,7 @@ def booking():
         cur.execute('SELECT * FROM MOVIES WHERE MOV_TITLE=%s',[movietitle])
         record = cur.fetchone()
         if record:
-            cur.execute("INSERT INTO TICKETS(TICKET_ID,USERNAME,MOVIE_ID,MOVIE_TITLE,BOOK_DATE,BOOK_TIME,PRICE,PAYMENT_MODE) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)",(ticketid,username,movieid,movietitle,date,time,price,payment))
+            cur.execute("INSERT INTO TICKETS(TICKET_ID,USERNAME,MOVIE_TITLE,BOOK_DATE,BOOK_TIME,PRICE,PAYMENT_MODE) VALUES (%s,%s,%s,%s,%s,%s,%s)",(ticketid,username,movietitle,date,time,price,payment))
             mysql.connection.commit()
             cur.close()
             return redirect(url_for('logout'))
@@ -83,31 +82,22 @@ def booking():
     #return render_template('booking.html')
 
 
-
-
-
-
-
-
-
-
 #Admin Update
 @app.route('/adminupdate',methods=['GET', 'POST'])
 def adminupdate():
     if request.method == 'POST':
         #The form data is stored in a variable called userDetails and request.form fetches the data from the HTML page
         userDetails = request.form
-        mov_id = userDetails['mov_id']   
         mov_title = userDetails['mov_title']
         mov_year = userDetails['mov_year']
         mov_lang = userDetails['mov_lang']
         dir_id = userDetails['dir_id']
         duration = userDetails['duration']
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO MOVIES(MOV_ID,MOV_TITLE,MOV_YEAR,MOV_LANG,DIR_ID,DURATION) VALUES (%s,%s,%s,%s,%s,%s)",(mov_id,mov_title,mov_year,mov_lang,dir_id,duration))
+        cur.execute("INSERT INTO MOVIES(MOV_TITLE,MOV_YEAR,MOV_LANG,DIR_ID,DURATION) VALUES (%s,%s,%s,%s,%s)",(mov_title,mov_year,mov_lang,dir_id,duration))
         mysql.connection.commit()
         cur.close()
-        val = "Updation successful! Thank you for signing up, your details include: Movie ID: {0}, Movie Title: {1}, Movie Year: {2}, Movie Language: {3}, Director ID: {4}, Duration: {5}".format(mov_id,mov_title,mov_year,mov_lang,dir_id,duration)
+        val = "Updation successful! Thank you for signing up, your details include: Movie Title: {0}, Movie Year: {1}, Movie Language: {2}, Director ID: {3}, Duration: {4}".format(mov_title,mov_year,mov_lang,dir_id,duration)
         return redirect(url_for('logout'))
     return render_template('adminupdate.html')       
 
@@ -115,7 +105,6 @@ def adminupdate():
 @app.route("/index")
 def main_page():
     return render_template('index.html',username = session['username'])
-
 
 
 #This is for user's login
